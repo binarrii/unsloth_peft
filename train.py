@@ -64,8 +64,16 @@ def _train(_args: argparse.Namespace):
         samples = inputs["text"]
         print(f">>>>> len(samples): {len(samples)}")
         texts = []
-        for txt in samples:
-            text = txt + tokenizer.eos_token
+        for t in samples:
+            text = """Below is an instruction that describes a task. Write a response that appropriately completes the request.
+
+            ### Instruction:
+            write a screenplay(写一个剧本)
+
+            ### Response:
+            {}
+            """
+            text = text.format(t) + tokenizer.eos_token
             texts.append(text)
         return {"text": texts}
 
@@ -91,8 +99,8 @@ def _train(_args: argparse.Namespace):
             gradient_accumulation_steps=4,
             warmup_steps=8,
             # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=60,
-            learning_rate=2e-4,
+            max_steps=80,
+            learning_rate=4e-4,
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
             logging_steps=1,
@@ -122,7 +130,8 @@ def _train(_args: argparse.Namespace):
                    {}
 
                    ### Response:
-                   {}"""
+                   {}
+                   """
             text = text.format(_in, _out) + tokenizer.eos_token
             texts.append(text)
         return {"text": texts}
@@ -137,11 +146,11 @@ def _train(_args: argparse.Namespace):
         train_dataset=identity_dataset,
         dataset_text_field="text",
         max_seq_length=2048,
-        dataset_num_proc=8,
+        dataset_num_proc=2,
         args=UnslothTrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=8,
-            max_steps=80,
+            max_steps=60,
             warmup_steps=6,
             # warmup_ratio = 0.1,
             # num_train_epochs = 1,
@@ -165,9 +174,9 @@ def _train(_args: argparse.Namespace):
 
     # Local saving
     if _args.save_lora:
-        model.save_pretrained(f"{_args.save_path}/{_args.base_model}-Screenplay-LoRA")
+        model.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-Screenplay-LoRA")
         tokenizer.save_pretrained(
-            f"{_args.save_path}/{_args.base_model}-Screenplay-LoRA"
+            f"{_args.saved_path}/{_args.saved_name}-Screenplay-LoRA"
         )
         # model.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
         # tokenizer.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
@@ -182,7 +191,7 @@ def _train(_args: argparse.Namespace):
     # Saving to float16 for vLLM
     if _args.save_vllm:
         model.save_pretrained_merged(
-            f"{_args.save_path}/{_args.base_model}-Screenplay-ft",
+            f"{_args.saved_path}/{_args.saved_name}-Screenplay-ft",
             tokenizer,
             # save_method="merged_4bit_forced",
         )
@@ -191,11 +200,11 @@ def _train(_args: argparse.Namespace):
     # GGUF / llama.cpp Conversion
     if _args.save_gguf:
         model.save_pretrained_gguf(
-            f"{_args.save_path}/{_args.base_model}-Screenplay-q5_K_M",
+            f"{_args.saved_path}/{_args.saved_name}-Screenplay-q5_K_M",
             tokenizer,
             quantization_method="q5_k_m",
         )
-        print(tokenizer._ollama_modelfile)
+        print(f"\n\n{tokenizer._ollama_modelfile}\n\n")
         # model.push_to_hub_gguf("hf/model", tokenizer, quantization_method = "q5_k_m", token = "")
 
 
@@ -225,12 +234,13 @@ def _show_final_memory_stats(trainer_stats, start_gpu_memory, max_memory):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base-model", type=str, default="Qwen2.5-14B")
+    parser.add_argument("--base-model", type=str, default="Qwen2.5-14B-Instruct")
     parser.add_argument("--exec-infr", action="store_true", default=False)
     parser.add_argument("--save-lora", action="store_true", default=True)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)
-    parser.add_argument("--save-path", type=str, default="./models")
+    parser.add_argument("--saved-path", type=str, default="./models")
+    parser.add_argument("--saved-name", type=str, default="Qwen2.5-14B")
     _args = parser.parse_args()
 
     start_time = time.time()
