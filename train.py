@@ -97,9 +97,9 @@ def _train(_args: argparse.Namespace):
         args=TrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=4,
-            warmup_steps=8,
+            warmup_steps=6,
             # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=80,
+            max_steps=60,
             learning_rate=4e-4,
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
@@ -150,8 +150,8 @@ def _train(_args: argparse.Namespace):
         args=UnslothTrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=8,
-            max_steps=60,
-            warmup_steps=6,
+            max_steps=40,
+            warmup_steps=4,
             # warmup_ratio = 0.1,
             # num_train_epochs = 1,
             learning_rate=5e-5,
