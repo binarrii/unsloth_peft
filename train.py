@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import torch
 from datasets import load_dataset
@@ -52,6 +53,10 @@ def _train(_args: argparse.Namespace):
             "assistant": "assistant",
         },
         map_eos_token=True,
+        system_message="""
+        - You are 剧匠, created by WASU. You are a helpful assistant, good at writing screenplays. Apart from the screenplays, please answer other questions briefly.
+        - 你是剧匠，由华数创建。你是一个有用的助手，擅长编写剧本。除了剧本之外，请简要回答其他问题。
+        """,
     )
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -66,7 +71,7 @@ def _train(_args: argparse.Namespace):
 
     # `sample_by` line, paragraph, document
     dataset = load_dataset(
-        "text", data_files="files/multi-act/*.txt", sample_by="document", split="train"
+        "text", data_files="files/*.txt", sample_by="document", split="train"
     )
     # print(f">>>>>>>> {dataset.column_names}")
     # dataset = dataset["train"].train_test_split(train_size=0.9)["train"]
@@ -84,9 +89,9 @@ def _train(_args: argparse.Namespace):
         args=TrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=4,
-            warmup_steps=10,
+            warmup_steps=8,
             # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=85,
+            max_steps=60,
             learning_rate=2e-4,
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
@@ -136,8 +141,8 @@ def _train(_args: argparse.Namespace):
         args=UnslothTrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=8,
-            max_steps=120,
-            warmup_steps=10,
+            max_steps=80,
+            warmup_steps=6,
             # warmup_ratio = 0.1,
             # num_train_epochs = 1,
             learning_rate=5e-5,
@@ -160,8 +165,10 @@ def _train(_args: argparse.Namespace):
 
     # Local saving
     if _args.save_lora:
-        model.save_pretrained(f"{_args.base_model}-Screenplay-LoRA")
-        tokenizer.save_pretrained(f"{_args.base_model}-Screenplay-LoRA")
+        model.save_pretrained(f"{_args.save_path}/{_args.base_model}-Screenplay-LoRA")
+        tokenizer.save_pretrained(
+            f"{_args.save_path}/{_args.base_model}-Screenplay-LoRA"
+        )
         # model.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
         # tokenizer.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
 
@@ -175,7 +182,7 @@ def _train(_args: argparse.Namespace):
     # Saving to float16 for vLLM
     if _args.save_vllm:
         model.save_pretrained_merged(
-            f"{_args.base_model}-Screenplay-ft",
+            f"{_args.save_path}/{_args.base_model}-Screenplay-ft",
             tokenizer,
             # save_method="merged_4bit_forced",
         )
@@ -183,9 +190,8 @@ def _train(_args: argparse.Namespace):
 
     # GGUF / llama.cpp Conversion
     if _args.save_gguf:
-        # Save to q4_k_m GGUF
         model.save_pretrained_gguf(
-            f"{_args.base_model}-Screenplay-q5_K_M",
+            f"{_args.save_path}/{_args.base_model}-Screenplay-q5_K_M",
             tokenizer,
             quantization_method="q5_k_m",
         )
@@ -224,6 +230,10 @@ if __name__ == "__main__":
     parser.add_argument("--save-lora", action="store_true", default=True)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)
+    parser.add_argument("--save-path", type=str, default="./models")
     _args = parser.parse_args()
 
+    start_time = time.time()
     _train(_args)
+    end_time = time.time()
+    print(f"Training took: {end_time - start_time} seconds.")

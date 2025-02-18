@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./Qwen2.5-14B-Screenplay-ft:/Qwen2.5-14B-Screenplay-ft
+      - ./models/Qwen2.5-14B-Screenplay-ft:/Qwen2.5-14B-Screenplay-ft
     environment:
       HF_HUB_OFFLINE: 1
     ipc: host

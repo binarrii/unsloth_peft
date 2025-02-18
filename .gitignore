@@ -17,3 +17,4 @@ wheels/
 *.log
 llama.cpp/
 outputs/
+_unsloth_temporary_saved_buffers/
