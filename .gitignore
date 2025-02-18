@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Model file
+*Qwen2.5-*
+
+# Misc
+*.out
+*.log
+llama.cpp/
+outputs/

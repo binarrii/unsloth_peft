@@ -1,0 +1,42 @@
+services:
+  qwen2.5-14b-screenplay-ft:
+    image: lmsysorg/sglang:v0.4.1.post6-cu121-srt
+    container_name: qwen2.5_14b_screenplay
+    restart: always
+    networks:
+      - screenplay
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Qwen2.5-14B-Screenplay-ft:/Qwen2.5-14B-Screenplay-ft
+    environment:
+      HF_HUB_OFFLINE: 1
+    ipc: host
+    shm_size: 16g
+    entrypoint: [
+      "python3",
+      "-m", "sglang.launch_server",
+      "--model-path", "/Qwen2.5-14B-Screenplay-ft",
+      "--served-model-name", "Qwen2.5-14B-Screenplay-ft",
+      "--tp", "2",
+      "--enable-p2p-check",
+      "--disable-radix-cache",
+      "--chunked-prefill-size", "2048",
+      "--max-running-requests", "8",
+      "--context-length", "4096",
+      "--mem-fraction-static", "0.75",
+      "--host", "0.0.0.0",
+      "--port", "8000"
+    ]
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['all']
+            capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health_generate || exit 1"]
+
+networks:
+  screenplay:
