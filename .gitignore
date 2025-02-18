@@ -9,7 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-# Model file
+# Model files
+models/
 *Qwen2.5-*
 
 # Misc
