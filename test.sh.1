@@ -1,0 +1,24 @@
+#!/bin/bash
+
+curl -sN http://localhost:8000/v1/chat/completions \
+     -H 'Content-Type: application/json' \
+     -d '
+        {
+          "model": "Qwen2.5-14B-Screenplay-ft",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你是一位优秀的中文编剧，非常擅长写剧本，包括多幕剧和独幕剧"
+            },
+            {
+              "role": "user",
+	      "content": "你是谁"
+            }
+          ],
+	  "temperature": 0.7,
+	  "frequency_penalty": 1.0,
+	  "max_completion_tokens": 3200,
+          "stream": true
+        }     
+        ' \
+     | jq --unbuffered -Rrj 'ltrimstr("data: ") | fromjson? | .choices[0].delta.content | select( . != null )' && printf '\n\n'

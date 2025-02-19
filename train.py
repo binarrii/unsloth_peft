@@ -3,13 +3,12 @@ import time
 
 import torch
 from datasets import load_dataset
-from transformers import TextStreamer, TrainingArguments
-from trl import SFTTrainer
+from transformers import TextStreamer
 from unsloth import (
     FastLanguageModel,
-    is_bfloat16_supported,
     UnslothTrainer,
     UnslothTrainingArguments,
+    is_bfloat16_supported,
 )
 from unsloth.chat_templates import get_chat_template
 
@@ -39,7 +38,7 @@ def _train(_args: argparse.Namespace):
         bias="none",
         use_gradient_checkpointing="unsloth",
         random_state=3407,
-        use_rslora=False,
+        use_rslora=True,
         loftq_config=None,
     )
 
@@ -54,8 +53,8 @@ def _train(_args: argparse.Namespace):
         },
         map_eos_token=True,
         system_message="""
-        - You are 剧匠, created by WASU. You are a helpful assistant, good at writing screenplays. Apart from the screenplays, please answer other questions briefly.
-        - 你是剧匠，由华数创建。你是一个有用的助手，擅长编写剧本。除了剧本之外，请简要回答其他问题。
+        - You are an excellent Chinese screenwriter, very skilled at writing scripts, including multi-act plays and one-act plays.
+        - 你是一位优秀的中文编剧，非常擅长写剧本，包括多幕剧和独幕剧。
         """,
     )
     tokenizer.pad_token = tokenizer.eos_token
@@ -64,16 +63,8 @@ def _train(_args: argparse.Namespace):
         samples = inputs["text"]
         print(f">>>>> len(samples): {len(samples)}")
         texts = []
-        for t in samples:
-            text = """Below is an instruction that describes a task. Write a response that appropriately completes the request.
-
-            ### Instruction:
-            write a screenplay(写一个剧本)
-
-            ### Response:
-            {}
-            """
-            text = text.format(t) + tokenizer.eos_token
+        for text in samples:
+            text = text + tokenizer.eos_token
             texts.append(text)
         return {"text": texts}
 
@@ -86,7 +77,7 @@ def _train(_args: argparse.Namespace):
     dataset = dataset.map(formatting_prompts_func, batched=True)
 
     # Continued Pretraining
-    trainer = SFTTrainer(
+    trainer = UnslothTrainer(
         model=model,
         tokenizer=tokenizer,
         train_dataset=dataset,
@@ -94,13 +85,14 @@ def _train(_args: argparse.Namespace):
         max_seq_length=2048,
         dataset_num_proc=2,
         packing=False,  # Can make training 5x faster for short sequences.
-        args=TrainingArguments(
+        args=UnslothTrainingArguments(
             per_device_train_batch_size=2,
-            gradient_accumulation_steps=4,
-            warmup_steps=6,
+            gradient_accumulation_steps=8,
+            warmup_steps=10,
             # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=60,
+            max_steps=80,
             learning_rate=4e-4,
+            embedding_learning_rate=4e-5,
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
             logging_steps=1,
@@ -150,8 +142,8 @@ def _train(_args: argparse.Namespace):
         args=UnslothTrainingArguments(
             per_device_train_batch_size=2,
             gradient_accumulation_steps=8,
-            max_steps=40,
-            warmup_steps=4,
+            max_steps=60,
+            warmup_steps=8,
             # warmup_ratio = 0.1,
             # num_train_epochs = 1,
             learning_rate=5e-5,
