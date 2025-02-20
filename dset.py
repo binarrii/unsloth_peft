@@ -1,3 +1,4 @@
+import argparse
 import os
 import docx2txt
 
@@ -14,8 +15,6 @@ def docx_to_txt(directory):
 
 
 if __name__ == "__main__":
-    import argparse
-
     parser = argparse.ArgumentParser(
         description="Convert .docx files to .txt files in a directory."
     )
