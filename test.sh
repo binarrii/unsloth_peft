@@ -16,7 +16,7 @@ curl -sN http://localhost:8000/v1/chat/completions \
             }
           ],
 	  "temperature": 0.7,
-	  "frequency_penalty": 1.0,
+	  "frequency_penalty": 1.1,
 	  "max_completion_tokens": 3200,
           "stream": true
         }     

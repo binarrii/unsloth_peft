@@ -1,0 +1,115 @@
+{
+  "table_of_contents": [
+    {
+      "title": "1.\u4ea4\u901a\u653b\u7565:",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          0.0,
+          14.927842576056719
+        ],
+        [
+          124.46236928944623,
+          14.927842576056719
+        ],
+        [
+          124.46236928944623,
+          40.56981657072902
+        ],
+        [
+          0.0,
+          40.56981657072902
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          11
+        ],
+        [
+          "Span",
+          11
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          7
+        ],
+        [
+          "Span",
+          7
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          9
+        ],
+        [
+          "Span",
+          9
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListItem",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/\u666f\u533a\u8be6\u60c5\u6392\u7248\u6a21\u677f"
+}

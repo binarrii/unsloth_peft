@@ -1,0 +1,304 @@
+{
+  "table_of_contents": [
+    {
+      "title": "\u6591 9 \u8272\u4f60\u5728\u4e00\u8d77\n\u4e0b\u996d\u9178\u83dc\u9c7c",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          320.9858315677966,
+          378.64611758106685
+        ],
+        [
+          1589.8712287514895,
+          383.1745382845402
+        ],
+        [
+          1589.8712287514895,
+          646.2644683420658
+        ],
+        [
+          318.7359308792373,
+          646.2644683420658
+        ]
+      ]
+    },
+    {
+      "title": "\u00ae \u25ce\u9c7c\u4f60\u5728\u4e00\u8d77\u8cb7",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          313.4861626059322,
+          175.45186438409831
+        ],
+        [
+          1594.265566033832,
+          178.0092377141118
+        ],
+        [
+          1594.265566033832,
+          337.3331110775471
+        ],
+        [
+          310.48629502118644,
+          337.3331110775471
+        ]
+      ]
+    },
+    {
+      "title": "TO OWEIS FISHIA",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          189.74162473516947,
+          434.8806894990471
+        ],
+        [
+          1604.929157838983,
+          430.3819237456087
+        ],
+        [
+          1606.4290916313557,
+          592.4506190121174
+        ],
+        [
+          191.24155852754237,
+          592.4506190121174
+        ]
+      ]
+    },
+    {
+      "title": "HSIJ SII3MB",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          1313.942002118644,
+          110.11908057332039
+        ],
+        [
+          1490.934189618644,
+          110.11908057332039
+        ],
+        [
+          1495.4339909957625,
+          925.2992426455021
+        ],
+        [
+          1318.4418034957625,
+          925.2992426455021
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 1,
+        "llm_error_count": 0,
+        "llm_tokens_used": 3670
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          2
+        ],
+        [
+          "Span",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 1,
+        "llm_error_count": 0,
+        "llm_tokens_used": 3670
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Span",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 4,
+        "llm_error_count": 0,
+        "llm_tokens_used": 9676
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 2,
+        "llm_error_count": 0,
+        "llm_tokens_used": 5660
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          5
+        ],
+        [
+          "Span",
+          5
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 2,
+        "llm_error_count": 0,
+        "llm_tokens_used": 5932
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          4
+        ],
+        [
+          "Span",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 2,
+        "llm_error_count": 0,
+        "llm_tokens_used": 5401
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          19
+        ],
+        [
+          "Span",
+          19
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Picture",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 1,
+        "llm_error_count": 1,
+        "llm_tokens_used": 693
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/\u9c7c\u4f60\u5728\u4e00\u8d77logo-CMYK"
+}

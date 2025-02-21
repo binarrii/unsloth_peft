@@ -1,0 +1,115 @@
+{
+  "table_of_contents": [
+    {
+      "title": "\u673a",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          32.239168104657,
+          296.8765891967665
+        ],
+        [
+          74.97480954571395,
+          296.8765891967665
+        ],
+        [
+          74.97480954571395,
+          322.08431109786034
+        ],
+        [
+          32.239168104657,
+          322.08431109786034
+        ]
+      ]
+    },
+    {
+      "title": "999\u3002",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          35.9879085819427,
+          13.49439041803484
+        ],
+        [
+          89.96977145485674,
+          14.993767131149822
+        ],
+        [
+          89.2200233593996,
+          40.31192438676953
+        ],
+        [
+          35.238160486485555,
+          40.31192438676953
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          17
+        ],
+        [
+          "Span",
+          17
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          3
+        ],
+        [
+          "Span",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/\u5341\u4e03\u623f\u5f00\u5143\u89c2\u5802\u9152\u5e97\u4f4f\u5e978\u6298"
+}

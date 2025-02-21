@@ -1,0 +1,65 @@
+{
+  "table_of_contents": [
+    {
+      "title": "1. \u6743\u76ca\u5185\u5bb9",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          0.0,
+          14.567789118736982
+        ],
+        [
+          121.4591914640566,
+          14.567789118736982
+        ],
+        [
+          121.4591914640566,
+          41.6479473747313
+        ],
+        [
+          0.0,
+          41.6479473747313
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          16
+        ],
+        [
+          "Span",
+          16
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/\u6743\u76ca\u4e0a\u4f20\u6a21\u677f"
+}

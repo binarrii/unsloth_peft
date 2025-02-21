@@ -1,0 +1,25 @@
+{
+  "table_of_contents": [],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          152
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 1,
+        "llm_error_count": 0,
+        "llm_tokens_used": 4255
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/\u4e4b\u6c5f\u6587\u5316\u4e2d\u5fc3\u6743\u76ca\u8be6\u60c5-\u5546\u6237\u6e05\u5355\u8868"
+}

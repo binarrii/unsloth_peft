@@ -3,7 +3,6 @@ import time
 
 import torch
 from datasets import load_dataset
-from transformers import TextStreamer
 from unsloth import (
     FastLanguageModel,
     UnslothTrainer,
@@ -38,10 +37,12 @@ def _train(_args: argparse.Namespace):
         bias="none",
         use_gradient_checkpointing="unsloth",
         random_state=3407,
-        use_rslora=True,
+        use_rslora=False,
         loftq_config=None,
     )
+    model.config.repetition_penalty = 1.1
 
+    system_prompt = _get_system_prompt(_args.sys_prompt)
     tokenizer = get_chat_template(
         tokenizer,
         chat_template="qwen2.5",
@@ -52,10 +53,7 @@ def _train(_args: argparse.Namespace):
             "assistant": "assistant",
         },
         map_eos_token=True,
-        system_message="""
-        - You are an excellent Chinese screenwriter, very skilled at writing scripts, including multi-act plays and one-act plays.
-        - 你是一位优秀的中文编剧，非常擅长写剧本，包括多幕剧和独幕剧。
-        """,
+        system_message=system_prompt,
     )
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -70,7 +68,10 @@ def _train(_args: argparse.Namespace):
 
     # `sample_by` line, paragraph, document
     dataset = load_dataset(
-        "text", data_files="files/*.txt", sample_by="document", split="train"
+        "text",
+        data_files=["files/wenlv/txt/*.txt", "files/wenlv/txt/*.md"],
+        sample_by="document",
+        split="train",
     )
     # print(f">>>>>>>> {dataset.column_names}")
     # dataset = dataset["train"].train_test_split(train_size=0.9)["train"]
@@ -90,9 +91,9 @@ def _train(_args: argparse.Namespace):
             gradient_accumulation_steps=8,
             warmup_steps=10,
             # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=80,
-            learning_rate=4e-4,
-            embedding_learning_rate=4e-5,
+            max_steps=100,
+            learning_rate=5e-5,
+            embedding_learning_rate=1e-5,
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
             logging_steps=1,
@@ -116,7 +117,7 @@ def _train(_args: argparse.Namespace):
 
         texts = []
         for _in, _out in zip(inputs, outputs):
-            text = """Below is an instruction that describes a task. Write a response that appropriately completes the request.
+            text = """The following are instructions regarding your identity issues; write an appropriate response to fulfill the request explaining your identity information.
 
                    ### Instruction:
                    {}
@@ -166,24 +167,15 @@ def _train(_args: argparse.Namespace):
 
     # Local saving
     if _args.save_lora:
-        model.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-Screenplay-LoRA")
-        tokenizer.save_pretrained(
-            f"{_args.saved_path}/{_args.saved_name}-Screenplay-LoRA"
-        )
+        model.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-wenlv-LoRA")
+        tokenizer.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-wenlv-LoRA")
         # model.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
         # tokenizer.push_to_hub("your_name/Qwen2.5-7B-bnb-4bit-ft", token = "...") # Online saving
-
-    # Inference
-    if _args.exec_infr:
-        FastLanguageModel.for_inference(model)
-        inputs = tokenizer(["写一个剧本"], return_tensors="pt").to("cuda")
-        text_streamer = TextStreamer(tokenizer)
-        _ = model.generate(**inputs, streamer=text_streamer, max_new_tokens=128)
 
     # Saving to float16 for vLLM
     if _args.save_vllm:
         model.save_pretrained_merged(
-            f"{_args.saved_path}/{_args.saved_name}-Screenplay-ft",
+            f"{_args.saved_path}/{_args.saved_name}-wenlv-ft",
             tokenizer,
             # save_method="merged_4bit_forced",
         )
@@ -192,12 +184,17 @@ def _train(_args: argparse.Namespace):
     # GGUF / llama.cpp Conversion
     if _args.save_gguf:
         model.save_pretrained_gguf(
-            f"{_args.saved_path}/{_args.saved_name}-Screenplay-q5_K_M",
+            f"{_args.saved_path}/{_args.saved_name}-wenlv-q5_K_M",
             tokenizer,
             quantization_method="q5_k_m",
         )
         print(f"\n\n{tokenizer._ollama_modelfile}\n\n")
         # model.push_to_hub_gguf("hf/model", tokenizer, quantization_method = "q5_k_m", token = "")
+
+
+def _get_system_prompt(file):
+    with open(file, "r") as f:
+        return f.read()
 
 
 def _show_start_memory_stats():
@@ -227,7 +224,7 @@ def _show_final_memory_stats(trainer_stats, start_gpu_memory, max_memory):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-model", type=str, default="Qwen2.5-14B-Instruct")
-    parser.add_argument("--exec-infr", action="store_true", default=False)
+    parser.add_argument("--sys-prompt", type=str, default="system_message.md")
     parser.add_argument("--save-lora", action="store_true", default=True)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)
