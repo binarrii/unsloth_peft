@@ -6,7 +6,7 @@ services:
     networks:
       - wenlv
     ports:
-      - "8000:8000"
+      - "8100:8000"
     volumes:
       - ./models/Qwen2.5-14B-wenlv-ft:/Qwen2.5-14B-wenlv-ft
     environment:
