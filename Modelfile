@@ -8,5 +8,5 @@ TEMPLATE """{{ if .System }}<|im_start|>system
 """
 PARAMETER stop "<|im_start|>"
 PARAMETER stop "<|im_end|>"
-PARAMETER temperature 1.5
+PARAMETER temperature 0.7
 PARAMETER min_p 0.1
