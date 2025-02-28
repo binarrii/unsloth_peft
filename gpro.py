@@ -54,6 +54,7 @@ def _train(_args: argparse.Namespace):
     </answer>
     """
 
+    # ruff: noqa: F841
     XML_COT_FORMAT = """\
     <reasoning>
     {reasoning}
