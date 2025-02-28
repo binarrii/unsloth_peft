@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.13' and sys_platform == 'darwin'",
@@ -517,6 +518,25 @@ wheels = [
 ]
 
 [[package]]
+name = "diffusers"
+version = "0.32.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "filelock" },
+    { name = "huggingface-hub" },
+    { name = "importlib-metadata" },
+    { name = "numpy" },
+    { name = "pillow" },
+    { name = "regex" },
+    { name = "requests" },
+    { name = "safetensors" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ee/72/d3f715e71a77f14a48f1ac081cea5bb6c6e6cd41c55b1291f401b1504679/diffusers-0.32.2.tar.gz", hash = "sha256:eb1e36b326aabb0675729af7c626caf7a76ce7ced3a126e879331790b1eaa230", size = 2614622 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/88/c9/2b2e822d871b06605363e52555be5d7ff0996f4eeaf0f7e5fda15adedfbe/diffusers-0.32.2-py3-none-any.whl", hash = "sha256:d7f182b49c7f428737ee3bf6397d463ec03b85f4f3b2c9470bd1d73292b609ff", size = 3226075 },
+]
+
+[[package]]
 name = "dill"
 version = "0.3.8"
 source = { registry = "https://pypi.org/simple" }
@@ -889,7 +909,7 @@ name = "importlib-metadata"
 version = "8.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "zipp", marker = "(python_full_version >= '3.13' and sys_platform == 'linux') or (python_full_version >= '3.13' and sys_platform == 'win32') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
+    { name = "zipp" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/33/08/c1395a292bb23fd03bdf572a1357c5a733d3eecbab877641ceacab23db6e/importlib_metadata-8.6.1.tar.gz", hash = "sha256:310b41d755445d74569f993ccfc22838295d9fe005425094fad953d7f15c8580", size = 55767 }
 wheels = [
@@ -2823,6 +2843,7 @@ requires-dist = [
     { name = "scipy", marker = "extra == 'tests'", specifier = ">=1.7.1" },
     { name = "tabulate", marker = "extra == 'tutorials'" },
 ]
+provides-extras = ["build", "tests", "tutorials"]
 
 [[package]]
 name = "triton"
@@ -2854,6 +2875,7 @@ requires-dist = [
     { name = "scipy", marker = "extra == 'tests'", specifier = ">=1.7.1" },
     { name = "tabulate", marker = "extra == 'tutorials'" },
 ]
+provides-extras = ["build", "tests", "tutorials"]
 
 [[package]]
 name = "trl"
@@ -2868,6 +2890,11 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/01/26/30f5bdfb1910e42df2721028c4a8cb2a6528326555a17693e0670aa9a3e0/trl-0.14.0.tar.gz", hash = "sha256:ddbd73b12e870a9acb8c50bfa5704de88eb519e4aad5bd9e91177b2f93b908d8", size = 326357 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/05/62/0150e02e697be177c11962ef12e00d692943d69e33801a231bcd853c2dad/trl-0.14.0-py3-none-any.whl", hash = "sha256:2407df4ea0e92d2c228a49f92047b4856b2e09bdfc1cde2b2151d342092efee2", size = 313859 },
+]
+
+[package.optional-dependencies]
+diffusers = [
+    { name = "diffusers" },
 ]
 
 [[package]]
@@ -2956,6 +2983,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "docx2txt" },
     { name = "setuptools" },
+    { name = "trl", extra = ["diffusers"] },
     { name = "unsloth", extra = ["cu124-torch250"] },
     { name = "vllm", version = "0.2.5", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.13' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.13' and sys_platform == 'win32')" },
     { name = "vllm", version = "0.6.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13' and platform_machine == 'aarch64' and sys_platform == 'linux'" },
@@ -2965,7 +2993,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "docx2txt" },
-    { name = "setuptools", specifier = ">=75.8.0" },
+    { name = "setuptools" },
+    { name = "trl", extras = ["diffusers"], specifier = ">=0.14.0" },
     { name = "unsloth", extras = ["cu124-torch250"], git = "https://github.com/unslothai/unsloth.git" },
     { name = "vllm" },
 ]

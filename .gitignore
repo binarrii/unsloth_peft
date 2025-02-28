@@ -18,4 +18,6 @@ models/
 *.log
 llama.cpp/
 outputs/
+grpo_trainer_lora_model/
+unsloth_compiled_cache/
 _unsloth_temporary_saved_buffers/

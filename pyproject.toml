@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "unsloth[cu124-torch250]",
+    "trl[diffusers]>=0.14.0",
     "vllm",
     "docx2txt",
     "setuptools",
