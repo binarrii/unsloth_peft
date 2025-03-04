@@ -14,6 +14,8 @@ from unsloth import is_bfloat16_supported
 from unsloth.chat_templates import get_chat_template
 # from unsloth.tokenizer_utils import add_new_tokens
 
+_CGREEN, _CRED, _CMAGENTA, _CYELLOW, _CCYAN, _CGRAY, _CEND = \
+    "\033[92m", "\033[91m", "\033[95m", "\033[93m", "\033[96m", "\033[90m", "\033[0m"
 
 _MAX_SEQ_LENGTH = 1024
 _MAX_LORA_RANK = 64
@@ -65,10 +67,11 @@ def _train(_args: argparse.Namespace):
     # add_new_tokens(model, tokenizer, ["<think>", "</think>"]) ## CUDA OOM
 
     def extract_xml_answer(text: str) -> str:
-        answer = text.split("</think>")[-1]
-        answer = answer.strip()
-        answer = text.split("<answer>")[-1]
-        answer = text.split("</answer>")[0]
+        answer = text.split("<think>")[-1]
+        answer = answer.split("</think>")[-1]
+        answer = answer.split("<answer>")[-1]
+        answer = answer.split("</answer>")[0]
+        answer = answer.replace("final answer here", "")
         return answer.strip()
 
     # def extract_hash_answer(text: str) -> str | None:
@@ -99,11 +102,12 @@ def _train(_args: argparse.Namespace):
         q = prompts[0][-1]["content"]
         extracted_responses = [extract_xml_answer(r) for r in responses]
         print(
-            "-" * 20,
-            f"Question:\n{q}",
-            f"\nAnswer:\n{answer[0]}",
-            f"\nResponse:\n{responses[0]}",
-            f"\nExtracted:\n{extracted_responses[0]}",
+            f"\n{_CYELLOW}{'-' * 20}{_CEND}",
+            f"\n{_CRED}Question:{_CEND}\n{q}",
+            f"\n{_CGREEN}Answer:{_CEND}\n{answer[0]}",
+            f"\n{_CMAGENTA}Response:{_CEND}\n{responses[0]}",
+            f"\n{_CCYAN}Extracted:{_CEND}\n{extracted_responses[0]}",
+            f"\n{_CGRAY}{'-' * 20}{_CEND}\n",
         )
         return [2.0 if r == a else 0.0 for r, a in zip(extracted_responses, answer)]
 
