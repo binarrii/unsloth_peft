@@ -132,6 +132,8 @@ def _train(_args: argparse.Namespace):
 
     def count_xml(text) -> float:
         count = 0.0
+        if text.count("final answer here") > 0:
+            count -= 0.125
         if text.count("<think>") == 1:
             count += 0.125
         if text.count("</think>") == 1:
