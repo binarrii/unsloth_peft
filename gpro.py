@@ -109,7 +109,7 @@ def _train(_args: argparse.Namespace):
             f"\n{_CCYAN}Extracted:{_CEND}\n{extracted_responses[0]}",
             f"\n{_CGRAY}{'-' * 20}{_CEND}\n",
         )
-        return [2.0 if r == a else 0.0 for r, a in zip(extracted_responses, answer)]
+        return [2.0 if str(a) in r else 0.0 for r, a in zip(extracted_responses, answer)]
 
     def int_reward_func(completions, **kwargs) -> list[float]:
         responses = [completion[0]["content"] for completion in completions]
