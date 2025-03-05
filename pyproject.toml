@@ -5,9 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "unsloth[cu124-torch250]",
-    "trl[diffusers]>=0.14.0",
-    "vllm",
+    "unsloth[cu124-torch251]",
+    "trl",
     "docx2txt",
     "setuptools",
 ]

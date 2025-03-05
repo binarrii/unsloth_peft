@@ -28,7 +28,7 @@ def _train(_args: argparse.Namespace):
         load_in_4bit=True,
         fast_inference=True,
         max_lora_rank=_MAX_LORA_RANK,
-        gpu_memory_utilization=0.9,
+        gpu_memory_utilization=0.85,
     )
 
     model = FastLanguageModel.get_peft_model(
@@ -167,9 +167,9 @@ def _train(_args: argparse.Namespace):
         gradient_accumulation_steps=1,
         num_generations=4,  # Decrease if out of memory
         max_prompt_length=256,
-        max_completion_length=200,
+        max_completion_length=256,
         # num_train_epochs = 1,
-        max_steps=300,
+        max_steps=900,
         save_steps=300,
         max_grad_norm=0.1,
         report_to="none",
@@ -213,13 +213,13 @@ def _train(_args: argparse.Namespace):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base-model", type=str, default="Qwen2.5-7B-Instruct")
+    parser.add_argument("--base-model", type=str, default="Qwen2.5-14B-Instruct")
     parser.add_argument("--sys-prompt", type=str, default="system_message.md")
     parser.add_argument("--save-lora", action="store_true", default=True)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)
     parser.add_argument("--saved-path", type=str, default="./models")
-    parser.add_argument("--saved-name", type=str, default="Qwen2.5-7B-GPRO")
+    parser.add_argument("--saved-name", type=str, default="Qwen2.5-14B-GPRO")
     _args = parser.parse_args()
 
     start_time = time.time()
