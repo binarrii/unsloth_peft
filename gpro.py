@@ -169,7 +169,7 @@ def _train(_args: argparse.Namespace):
         max_prompt_length=256,
         max_completion_length=256,
         # num_train_epochs = 1,
-        max_steps=900,
+        max_steps=_args.max_steps,
         save_steps=300,
         max_grad_norm=0.1,
         report_to="none",
@@ -214,7 +214,7 @@ def _train(_args: argparse.Namespace):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-model", type=str, default="Qwen2.5-14B-Instruct")
-    parser.add_argument("--sys-prompt", type=str, default="system_message.md")
+    parser.add_argument("--max-steps", type=int, default=1000)
     parser.add_argument("--save-lora", action="store_true", default=True)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)

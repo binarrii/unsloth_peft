@@ -1,6 +1,6 @@
 services:
   qwen2.5-14b-screenplay-ft:
-    image: lmsysorg/sglang:v0.4.1.post6-cu121-srt
+    image: lmsysorg/sglang:v0.4.3.post2-cu124-srt
     container_name: qwen2.5_14b_screenplay
     restart: always
     networks:
@@ -21,6 +21,7 @@ services:
       "--tp", "2",
       "--enable-p2p-check",
       "--disable-radix-cache",
+      "--allow-auto-truncate",
       "--chunked-prefill-size", "2048",
       "--max-running-requests", "8",
       "--context-length", "4096",

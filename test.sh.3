@@ -1,0 +1,20 @@
+#!/bin/bash
+
+curl -sN http://localhost:8000/v1/chat/completions \
+     -H 'Content-Type: application/json' \
+     -d '
+        {
+          "model": "Qwen2.5-14B-GPRO-ft",
+          "messages": [
+            {
+              "role": "user",
+              "content": "翁女士每小时照看孩子能挣 12 美元。昨天她照看孩子 50 分钟。她挣了多少钱？"
+            }
+          ],
+          "temperature": 0.7,
+          "frequency_penalty": 1.1,
+          "max_completion_tokens": 2000,
+          "stream": true
+        }
+        ' \
+     | jq --unbuffered -Rrj 'ltrimstr("data: ") | fromjson? | .choices[0].delta.content | select( . != null )' && printf '\n\n'

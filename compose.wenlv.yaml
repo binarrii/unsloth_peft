@@ -1,6 +1,6 @@
 services:
   qwen2.5-14b-wenlv-ft:
-    image: lmsysorg/sglang:v0.4.1.post6-cu121-srt
+    image: lmsysorg/sglang:v0.4.3.post2-cu124-srt
     container_name: qwen2.5_14b_wenlv
     restart: always
     networks:
