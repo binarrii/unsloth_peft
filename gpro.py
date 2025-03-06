@@ -17,7 +17,7 @@ from unsloth.chat_templates import get_chat_template
 _CGREEN, _CRED, _CMAGENTA, _CYELLOW, _CCYAN, _CGRAY, _CEND = \
     "\033[92m", "\033[91m", "\033[95m", "\033[93m", "\033[96m", "\033[90m", "\033[0m"
 
-_MAX_SEQ_LENGTH = 1024
+_MAX_SEQ_LENGTH = 2048
 _MAX_LORA_RANK = 64
 
 
