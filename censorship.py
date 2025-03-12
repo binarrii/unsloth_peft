@@ -32,7 +32,7 @@ if __name__ == "__main__":
         for line in input_file:
             if re.match(r"^\s*[A-Z]\.\d+\s+[a-z]", line):
                 print(f"\n\n{_CGRAY}{line}{_CEND}\n\n")
-                tmp_file.write(f"\n\n{_CGRAY}{line.strip()}{_CEND}\n\n")
+                tmp_file.write(f"\n\n{line.strip()}\n\n")
             else:
                 i += 1
                 question = line.strip().lstrip("-").strip()
