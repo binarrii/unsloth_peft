@@ -9,6 +9,8 @@ dependencies = [
     "trl",
     "docx2txt",
     "setuptools",
+    "openai",
+    "httpx[socks]",
 ]
 
 [tool.uv.sources]

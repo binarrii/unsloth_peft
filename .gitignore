@@ -14,6 +14,7 @@ models/
 *Qwen2.5-*
 
 # Misc
+intermediate_*.txt
 *.out
 *.log
 llama.cpp/
