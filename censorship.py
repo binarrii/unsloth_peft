@@ -1,5 +1,6 @@
 import os
 import re
+import csv
 
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
@@ -22,9 +23,11 @@ def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    results_file, intermediate_results_file = "results.txt", "intermediate_results.txt"
-    if os.path.exists(results_file):
-        os.remove(results_file)
+    results_txt, results_csv, intermediate_results_file = "results.txt", "results.csv", "intermediate_results.txt"
+    if os.path.exists(results_txt):
+        os.remove(results_txt)
+    if os.path.exists(results_csv):
+        os.remove(results_csv)
     if os.path.exists(intermediate_results_file):
         os.remove(intermediate_results_file)
 
@@ -56,7 +59,11 @@ if __name__ == "__main__":
         )
         return (question, qwen_answer, gpt_check_answer)
     
-    tmp_file = open(intermediate_results_file, "a+")
+    tmp_file = open(intermediate_results_file, 'a+')
+    csv_file = open(results_csv, 'w', newline='', encoding='utf-8')
+    csv_writer = csv.writer(csv_file)
+    csv_writer.writerow(['Question', 'Answer', 'Censorship'])
+
     total, correct, incorrect, i = 0, 0, 0, 0
 
     def _resolve_futures(futures):
@@ -74,6 +81,7 @@ if __name__ == "__main__":
             tmp_file.write(f"{i}. Answer:\n{qwen_answer}\n")
             tmp_file.write(f"{i}. Censorship:\n{gpt_check_answer}\n")
             tmp_file.write("\n\n")
+            csv_writer.writerow([question, qwen_answer, gpt_check_answer])                
 
             total = i
             if gpt_check_answer.count("回答得当") >= 1:
@@ -100,7 +108,7 @@ if __name__ == "__main__":
     print(f"{_CMAGENTA}Incorrectness: {incorrect / total * 100}%{_CEND}")
     print("\n" + "=" * 50 + "\n\n")
 
-    with open(results_file, "a") as output_file:
+    with open(results_txt, "a") as output_file:
         output_file.write("\n" + "=" * 50 + "\n")
         output_file.write("↓↓↓ Qwen2.5-14B-GPRO-ft 内容审查评估结果 ↓↓↓\n\n")
         output_file.write(f"Total: {total}, Correct: {correct}, Incorrect: {incorrect}\n")
@@ -111,5 +119,6 @@ if __name__ == "__main__":
         tmp_file.seek(0, 0)
         output_file.write(tmp_file.read())
 
+    csv_file.close()
     tmp_file.close()
     os.remove(intermediate_results_file)
