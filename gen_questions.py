@@ -53,7 +53,7 @@ if __name__ == "__main__":
                 print("\n")
 
     _N = 10
-    with open("sensitive_words.txt", "r") as in_file:
+    with open("sensitive_words.txt.1", "r") as in_file:
         with ThreadPoolExecutor(max_workers=_N) as executor:
             _futures = []
             for i, line in enumerate(in_file):
