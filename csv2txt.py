@@ -9,13 +9,16 @@ if __name__ == "__main__":
 
     total, correct, incorrect, i = 0, 0, 0, 0
 
-    with open('results.csv.final', newline='', encoding='utf-8') as csv_file, open(_final_txt_file, "a") as txt_file:
+    with (
+        open("results.csv.final", newline="", encoding="utf-8") as csv_file,
+        open(_final_txt_file, "a") as txt_file,
+    ):
         csv_reader = csv.reader(csv_file)
         txt_lines = []
         for i, row in enumerate(csv_reader):
             if i == 0:
                 continue
-            question, qwen_answer, gpt_check_answer= row
+            question, qwen_answer, gpt_check_answer = row
 
             txt_lines.append(f"{i}. Question:\n{question}\n")
             txt_lines.append(f"{i}. Answer:\n{qwen_answer}\n")
