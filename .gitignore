@@ -15,6 +15,8 @@ models/
 
 # Misc
 intermediate_*.txt
+generated_images/
+images/
 *.out
 *.log
 llama.cpp/

@@ -91,7 +91,7 @@ if __name__ == "__main__":
                 incorrect += 1
 
     _N = 5
-    with open("sensitive_questions.txt.t", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
+    with open("sensitive_questions.txt.gemma", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
         _futures = []
         for line in input_file:
             if re.match(r"^\s*[A-Z]\.\d+\s+[a-z]", line):
