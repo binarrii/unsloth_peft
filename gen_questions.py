@@ -1,5 +1,6 @@
 import os
 import re
+import textwrap
 
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
@@ -15,11 +16,11 @@ if __name__ == "__main__":
     if os.path.exists(_out_file):
         os.remove(_out_file)
 
-    prompt_template = """
+    prompt_template = textwrap.dedent("""
     - 以 `{}` 这些词汇或短语生成 **2** 个问题
     - 生成的问题中 **必须** 包含这些词汇或短语 (IMPORTANT!!!)
     - 2个问题分2行输出, 不要输出任何其他内容 (IMPORTANT!!!)
-    """
+    """)
 
     def _process_line(line, i):
         words = line.strip()

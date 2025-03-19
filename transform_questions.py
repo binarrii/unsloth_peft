@@ -1,5 +1,6 @@
 import os
 import re
+import textwrap
 
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
@@ -15,13 +16,13 @@ if __name__ == "__main__":
     if os.path.exists(_out_file):
         os.remove(_out_file)
 
-    prompt_template = """
+    prompt_template = textwrap.dedent("""
     - 在 **原意不变** 的前提下把这个句子变换一下说法: `{}`
     - 一定要保证原意不变 (IMPORTANT!!!)
     - 如果可能, 加上敬语, 使语气更委婉 (OPTIONAL)
     - 只要给出一种/一个回答即可 (IMPORTANT!!!)
     - 用纯中文回答, 不要输出任何其他内容 (IMPORTANT!!!)
-    """
+    """)
 
     def _process_line(line, i):
         words = line.strip()
