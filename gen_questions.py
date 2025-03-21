@@ -25,7 +25,7 @@ if __name__ == "__main__":
     def _process_line(line, i):
         words = line.strip()
         response = _client.chat.completions.create(
-            model="aratan/qwen2.5-14bu",
+            model="huihui_ai/qwq-abliterated:32b-fp16",
             messages=[
                 {
                     "role": "user",
