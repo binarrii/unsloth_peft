@@ -14,7 +14,7 @@ models/
 *Qwen2.5-*
 
 # Misc
-intermediate_*.txt
+intermediate_*.txt*
 generated_images/
 images/
 *.out
