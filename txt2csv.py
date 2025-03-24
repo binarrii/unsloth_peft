@@ -11,4 +11,4 @@ if __name__ == "__main__":
             if line.count("@@") != 1:
                 continue
             w, c = line.split("@@")
-            csv_writer.writerow([w, c])
+            csv_writer.writerow([w.strip(), c.strip()])
