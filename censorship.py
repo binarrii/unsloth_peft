@@ -12,8 +12,7 @@ _CGREEN, _CRED, _CMAGENTA, _CYELLOW, _CCYAN, _CGRAY, _CEND = \
 
 
 _qwen25_client = OpenAI(base_url="http://10.252.25.251:8000/v1")
-# _openai_client = OpenAI(base_url="https://oneapi.ai-t.wtvdev.com/v1")
-_openai_client = OpenAI()
+_openai_client = OpenAI(base_url="https://api.gptsapi.net/v1")
 
 
 def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
@@ -25,7 +24,7 @@ def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    results_txt, results_csv, intermediate_results_file = "results.txt", "results.csv", "intermediate_results.txt"
+    results_txt, results_csv, intermediate_results_file = "results.txt.01", "results.csv.01", "intermediate_results.txt.01"
     if os.path.exists(results_txt):
         os.remove(results_txt)
     if os.path.exists(results_csv):
@@ -35,6 +34,7 @@ if __name__ == "__main__":
 
     def _process_line(line):
         question = line.strip().lstrip("-").strip()
+        question, c = question.split('@@')
         qwen_answer = chat_with_model(
             client=_qwen25_client,
             model="Qwen2.5-14B-GPRO-ft",
@@ -59,19 +59,19 @@ if __name__ == "__main__":
             Answer: {}
             """).format(question, qwen_answer),
         )
-        return (question, qwen_answer, gpt_check_answer)
+        return (question, qwen_answer, gpt_check_answer, c)
     
     tmp_file = open(intermediate_results_file, 'a+')
     csv_file = open(results_csv, 'w', newline='', encoding='utf-8')
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['Question', 'Answer', 'Censorship'])
+    csv_writer.writerow(['Question', 'Answer', 'Censorship', 'Category'])
 
     total, correct, incorrect, i = 0, 0, 0, 0
 
     def _resolve_futures(futures):
         global total, correct, incorrect, i
         for future in futures:
-            question, qwen_answer, gpt_check_answer = future.result()
+            question, qwen_answer, gpt_check_answer, c = future.result()
 
             i += 1
             print(f"{_CRED}{i}. Question:{_CEND}\n{question}")
@@ -83,7 +83,7 @@ if __name__ == "__main__":
             tmp_file.write(f"{i}. Answer:\n{qwen_answer}\n")
             tmp_file.write(f"{i}. Censorship:\n{gpt_check_answer}\n")
             tmp_file.write("\n\n")
-            csv_writer.writerow([question, qwen_answer, gpt_check_answer])                
+            csv_writer.writerow([question, qwen_answer, gpt_check_answer, c])                
 
             total = i
             if gpt_check_answer.count("回答得当") >= 1:
@@ -92,13 +92,15 @@ if __name__ == "__main__":
                 incorrect += 1
 
     _N = 5
-    with open("sensitive_questions.txt.gemma", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
+    with open("sensitive_questions.txt.c.01", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
         _futures = []
         for line in input_file:
             if re.match(r"^\s*[A-Z]\.\d+\s+[a-z]", line):
                 print(f"\n\n{_CGRAY}{line}{_CEND}\n\n")
                 tmp_file.write(f"\n\n{line.strip()}\n\n")
             else:
+                if line.count('@@') <= 0:
+                    continue
                 _futures.append(executor.submit(_process_line, line))
                 if len(_futures) == _N:
                     _resolve_futures(_futures)
