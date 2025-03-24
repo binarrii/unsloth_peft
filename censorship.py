@@ -15,6 +15,9 @@ _qwen25_client = OpenAI(base_url="http://10.252.25.251:8000/v1")
 _openai_client = OpenAI(base_url="https://api.gptsapi.net/v1")
 
 
+_suffix = ""
+
+
 def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
     response = client.chat.completions.create(
         model=model,
@@ -24,7 +27,9 @@ def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    results_txt, results_csv, intermediate_results_file = "results.txt.01", "results.csv.01", "intermediate_results.txt.01"
+    results_txt, results_csv, intermediate_results_file = \
+        f"results.txt{_suffix}", f"results.csv{_suffix}", f"intermediate_results.txt{_suffix}"
+    
     if os.path.exists(results_txt):
         os.remove(results_txt)
     if os.path.exists(results_csv):
@@ -92,7 +97,7 @@ if __name__ == "__main__":
                 incorrect += 1
 
     _N = 5
-    with open("sensitive_questions.txt.c.01", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
+    with open(f"sensitive_questions.txt{_suffix}", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
         _futures = []
         for line in input_file:
             if re.match(r"^\s*[A-Z]\.\d+\s+[a-z]", line):
