@@ -23,7 +23,7 @@ _openai_clients = Queue()
 
 def init_clients():
     _client = OpenAI(base_url="http://10.252.25.251:8000/v1")
-    for _ in range(min(_N, 16)):
+    for _ in range(min(_N, 20)):
         _qwen25_clients.put_nowait(_client)
 
     _openai_base_url = 'https://api.gptsapi.net/v1'
