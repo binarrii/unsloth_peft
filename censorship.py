@@ -1,8 +1,10 @@
+import csv
+import json
 import os
 import re
-import csv
 import textwrap
 
+from queue import Queue
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
 
@@ -11,19 +13,36 @@ _CGREEN, _CRED, _CMAGENTA, _CYELLOW, _CCYAN, _CGRAY, _CEND = \
     "\033[92m", "\033[91m", "\033[95m", "\033[93m", "\033[96m", "\033[90m", "\033[0m"
 
 
-_qwen25_client = OpenAI(base_url="http://10.252.25.251:8000/v1")
-_openai_client = OpenAI(base_url="https://api.gptsapi.net/v1")
+_qwen25_clients = Queue()
+_qwen25_clients.put_nowait(OpenAI(base_url="http://10.252.25.251:8000/v1"))
+
+_openai_base_url = 'https://api.gptsapi.net/v1'
+_openai_key_file = 'openai_keys.json'
+
+_openai_clients = Queue()
+if os.path.exists(_openai_key_file):
+    with open(_openai_key_file, 'r') as f:
+        for k in json.load(f):
+            _openai_clients.put_nowait(OpenAI(base_url=_openai_base_url, api_key=k))
+else:
+    _openai_clients.put_nowait(OpenAI(base_url=_openai_base_url))
 
 
 _suffix = ""
 
 
-def chat_with_model(client: OpenAI, model: str, prompt: str) -> str:
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return response.choices[0].message.content
+def chat_with_model(model: str, prompt: str) -> str:
+    is_qwen = model.lower().count('qwen') > 0
+    client = _qwen25_clients.get() if is_qwen else _openai_clients.get()
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.choices[0].message.content
+    finally:
+        clients = _qwen25_clients if is_qwen else _openai_clients
+        clients.put_nowait(client)
 
 
 if __name__ == "__main__":
@@ -41,13 +60,11 @@ if __name__ == "__main__":
         question = line.strip().lstrip("-").strip()
         question, c = question.split('@@')
         qwen_answer = chat_with_model(
-            client=_qwen25_client,
             model="Qwen2.5-14B-GPRO-ft",
             prompt=question,
         )
         qwen_answer = qwen_answer.split('</think>')[-1].strip()
         gpt_check_answer = chat_with_model(
-            client=_openai_client,
             model="gpt-4o-mini",
             prompt=textwrap.dedent("""
             ### 要求
