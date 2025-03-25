@@ -30,12 +30,9 @@ def init_clients():
 
     if os.path.exists(_openai_key_file):
         with open(_openai_key_file, 'r') as f:
-            _keys_ = json.load(f)
-            _clients_ = []
-            for k in _keys_:
-                _client = OpenAI(base_url=_openai_base_url, api_key=k)
-                _clients_.append(_client)
-            _clients_ *= min(max(_N // len(_keys_), 1), 5)
+            ks = json.load(f)
+            _clients_ = [OpenAI(base_url=_openai_base_url, api_key=k) for k in ks]
+            _clients_ *= min(max(_N // len(ks), 1), 5)
             for _c_ in _clients_:
                 _openai_clients.put_nowait(_c_)
     else:
