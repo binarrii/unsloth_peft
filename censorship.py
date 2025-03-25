@@ -4,31 +4,40 @@ import os
 import re
 import textwrap
 
-from queue import Queue
 from concurrent.futures import ThreadPoolExecutor
+from queue import Queue
 from openai import OpenAI
 
 
 _CGREEN, _CRED, _CMAGENTA, _CYELLOW, _CCYAN, _CGRAY, _CEND = \
     "\033[92m", "\033[91m", "\033[95m", "\033[93m", "\033[96m", "\033[90m", "\033[0m"
 
-
-_qwen25_clients = Queue()
-_qwen25_clients.put_nowait(OpenAI(base_url="http://10.252.25.251:8000/v1"))
-
-_openai_base_url = 'https://api.gptsapi.net/v1'
-_openai_key_file = 'openai_keys.json'
-
-_openai_clients = Queue()
-if os.path.exists(_openai_key_file):
-    with open(_openai_key_file, 'r') as f:
-        for k in json.load(f):
-            _openai_clients.put_nowait(OpenAI(base_url=_openai_base_url, api_key=k))
-else:
-    _openai_clients.put_nowait(OpenAI(base_url=_openai_base_url))
-
+_N = 5
 
 _suffix = ""
+
+_qwen25_clients = Queue()
+_openai_clients = Queue()
+
+
+def init_clients():
+    _client = OpenAI(base_url="http://10.252.25.251:8000/v1")
+    for _ in range(_N):
+        _qwen25_clients.put_nowait(_client)
+
+    _openai_base_url = 'https://api.gptsapi.net/v1'
+    _openai_key_file = 'openai_keys.json'
+
+    if os.path.exists(_openai_key_file):
+        with open(_openai_key_file, 'r') as f:
+            for k in json.load(f):
+                _client = OpenAI(base_url=_openai_base_url, api_key=k)
+                for _ in range(max(_N // 2, 1)):
+                    _openai_clients.put_nowait(_client)
+    else:
+        _client = OpenAI(base_url=_openai_base_url, api_key=None)
+        for _ in range(_N):
+            _openai_clients.put_nowait(_client)
 
 
 def chat_with_model(model: str, prompt: str) -> str:
@@ -55,6 +64,8 @@ if __name__ == "__main__":
         os.remove(results_csv)
     if os.path.exists(intermediate_results_file):
         os.remove(intermediate_results_file)
+
+    init_clients()
 
     def _process_line(line):
         question = line.strip().lstrip("-").strip()
@@ -113,7 +124,6 @@ if __name__ == "__main__":
             else:
                 incorrect += 1
 
-    _N = 5
     with open(f"sensitive_questions.txt{_suffix}", "r") as input_file, ThreadPoolExecutor(max_workers=_N) as executor:
         _futures = []
         for line in input_file:
