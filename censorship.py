@@ -1,5 +1,6 @@
 import csv
 import json
+import math
 import os
 import re
 import textwrap
@@ -32,7 +33,7 @@ def init_clients():
         with open(_openai_key_file, 'r') as f:
             _ks_ = json.load(f)
             _clients_ = [OpenAI(base_url=_openai_base_url, api_key=k) for k in _ks_]
-            _clients_ *= min(max(_N // len(_ks_), 1), 5)
+            _clients_ *= min(max(math.ceil(_N / len(_ks_)), 1), 5)
             for _c_ in _clients_:
                 _openai_clients.put_nowait(_c_)
     else:
