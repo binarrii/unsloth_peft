@@ -133,7 +133,7 @@ if __name__ == "__main__":
                 print(f"\n\n{_CGRAY}{line}{_CEND}\n\n")
                 tmp_file.write(f"\n\n{line.strip()}\n\n")
             else:
-                if line.count('@@') <= 0:
+                if line.count('@@') != 1:
                     continue
                 _futures.append(executor.submit(_process_line, line))
                 if len(_futures) == _N:
