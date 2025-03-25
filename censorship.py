@@ -22,7 +22,7 @@ _openai_clients = Queue()
 
 def init_clients():
     _client = OpenAI(base_url="http://10.252.25.251:8000/v1")
-    for _ in range(_N):
+    for _ in range(min(_N, 16)):
         _qwen25_clients.put_nowait(_client)
 
     _openai_base_url = 'https://api.gptsapi.net/v1'
@@ -30,13 +30,17 @@ def init_clients():
 
     if os.path.exists(_openai_key_file):
         with open(_openai_key_file, 'r') as f:
-            for k in json.load(f):
+            _keys_ = json.load(f)
+            _clients_ = []
+            for k in _keys_:
                 _client = OpenAI(base_url=_openai_base_url, api_key=k)
-                for _ in range(max(_N // 2, 1)):
-                    _openai_clients.put_nowait(_client)
+                _clients_.append(_client)
+            _clients_ *= min(max(_N // len(_keys_), 1), 5)
+            for _c_ in _clients_:
+                _openai_clients.put_nowait(_c_)
     else:
         _client = OpenAI(base_url=_openai_base_url, api_key=None)
-        for _ in range(_N):
+        for _ in range(min(_N, 5)):
             _openai_clients.put_nowait(_client)
 
 
