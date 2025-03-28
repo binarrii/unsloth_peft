@@ -3,6 +3,10 @@ from urllib.parse import quote
 
 from datasets import load_dataset
 from sqlalchemy import create_engine
+from tqdm import tqdm
+
+_BATCH_SIZE = 1000
+
 
 username = quote("root")
 password = quote(os.getenv("MYSQL_PASSWORD"))
@@ -20,4 +24,6 @@ engine = create_engine(
 dataset = load_dataset("BruceNju/crosswoz-sft", split="train")
 
 df = dataset.to_pandas()
-df.to_sql("crosswoz_sft", con=engine, if_exists="append", index=False)
+for start in tqdm(range(0, len(df), _BATCH_SIZE), desc="Writing to MySQL"):
+    df_chunk = df.iloc[start : start + _BATCH_SIZE]
+    df_chunk.to_sql("crosswoz_sft", con=engine, if_exists="append", index=False)
