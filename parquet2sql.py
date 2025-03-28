@@ -37,6 +37,7 @@ for start in tqdm(range(0, len(df), _BATCH_SIZE), desc="Writing to MySQL"):
         if_exists="append",
         index=False,
         dtype={
+            "dialog_id": types.BIGINT,
             "dialog_act": _STRING_AS_JSON,
             "history": _STRING_AS_JSON,
             "user_state": _STRING_AS_JSON,

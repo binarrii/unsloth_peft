@@ -26,6 +26,7 @@ def _run(args: argparse.Namespace):
                 json.dumps(
                     {
                         **row,
+                        "dialog_id": int(row["dialog_id"]),
                         "dialog_act": _str_to_json(row["dialog_act"]),
                         "history": _str_to_json(row["history"]),
                         "user_state": _str_to_json(row["user_state"]),
