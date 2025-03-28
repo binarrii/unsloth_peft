@@ -1,10 +1,11 @@
+import os
 from urllib.parse import quote
 
 from datasets import load_dataset
 from sqlalchemy import create_engine
 
 username = quote("root")
-password = quote("devel-root@251")
+password = quote(os.getenv("MYSQL_PASSWORD"))
 host = "10.252.25.251"
 port = 3309
 database = "devel"
