@@ -1,0 +1,2140 @@
+{'_backward_hooks': OrderedDict(),
+ '_backward_pre_hooks': OrderedDict(),
+ '_buffers': {},
+ '_forward_hooks': OrderedDict(),
+ '_forward_hooks_always_called': OrderedDict(),
+ '_forward_hooks_with_kwargs': OrderedDict(),
+ '_forward_pre_hooks': OrderedDict(),
+ '_forward_pre_hooks_with_kwargs': OrderedDict(),
+ '_is_full_backward_hook': None,
+ '_is_hf_initialized': True,
+ '_keep_in_fp32_modules': None,
+ '_load_state_dict_post_hooks': OrderedDict(),
+ '_load_state_dict_pre_hooks': OrderedDict(),
+ '_modules': {'lm_head': Linear(in_features=5120, out_features=151936, bias=False),
+              'model': Qwen3Model(
+  (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+  (layers): ModuleList(
+    (0-5): 6 x Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (6): Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (7-18): 12 x Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (19): Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (20-37): 18 x Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (38): Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+    (39): Qwen3DecoderLayer(
+      (self_attn): Qwen3Attention(
+        (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+        (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        (rotary_emb): LlamaRotaryEmbedding()
+      )
+      (mlp): Qwen3MLP(
+        (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+        (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+    )
+  )
+  (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+  (rotary_emb): LlamaRotaryEmbedding()
+)},
+ '_no_split_modules': ['Qwen3DecoderLayer'],
+ '_non_persistent_buffers_set': set(),
+ '_old_generate': <bound method GenerationMixin.generate of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ '_parameters': {},
+ '_pp_plan': {'embed_tokens': (['input_ids'], ['inputs_embeds']),
+              'layers': (['hidden_states', 'attention_mask'],
+                         ['hidden_states']),
+              'norm': (['hidden_states'], ['hidden_states'])},
+ '_saved_temp_tokenizer': Qwen2TokenizerFast(name_or_path='unsloth/qwen3-14b-unsloth-bnb-4bit', vocab_size=151643, model_max_length=40960, is_fast=True, padding_side='left', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|vision_pad|>', 'additional_special_tokens': ['<|im_start|>', '<|im_end|>', '<|object_ref_start|>', '<|object_ref_end|>', '<|box_start|>', '<|box_end|>', '<|quad_start|>', '<|quad_end|>', '<|vision_start|>', '<|vision_end|>', '<|vision_pad|>', '<|image_pad|>', '<|video_pad|>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={
+	151643: AddedToken("<|endoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151644: AddedToken("<|im_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151645: AddedToken("<|im_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151646: AddedToken("<|object_ref_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151647: AddedToken("<|object_ref_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151648: AddedToken("<|box_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151649: AddedToken("<|box_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151650: AddedToken("<|quad_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151651: AddedToken("<|quad_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151652: AddedToken("<|vision_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151653: AddedToken("<|vision_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151654: AddedToken("<|vision_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151655: AddedToken("<|image_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151656: AddedToken("<|video_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151657: AddedToken("<tool_call>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151658: AddedToken("</tool_call>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151659: AddedToken("<|fim_prefix|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151660: AddedToken("<|fim_middle|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151661: AddedToken("<|fim_suffix|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151662: AddedToken("<|fim_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151663: AddedToken("<|repo_name|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151664: AddedToken("<|file_sep|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151665: AddedToken("<tool_response>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151666: AddedToken("</tool_response>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151667: AddedToken("<think>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151668: AddedToken("</think>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+}
+),
+ '_state_dict_hooks': OrderedDict(),
+ '_state_dict_pre_hooks': OrderedDict(),
+ '_tp_plan': {'layers.*.mlp.down_proj': 'rowwise',
+              'layers.*.mlp.gate_proj': 'colwise',
+              'layers.*.mlp.up_proj': 'colwise',
+              'layers.*.self_attn.k_proj': 'colwise',
+              'layers.*.self_attn.o_proj': 'rowwise',
+              'layers.*.self_attn.q_proj': 'colwise',
+              'layers.*.self_attn.v_proj': 'colwise',
+              'model.layers.*.mlp.down_proj': 'rowwise',
+              'model.layers.*.mlp.gate_proj': 'colwise',
+              'model.layers.*.mlp.up_proj': 'colwise',
+              'model.layers.*.self_attn.k_proj': 'colwise',
+              'model.layers.*.self_attn.o_proj': 'rowwise',
+              'model.layers.*.self_attn.q_proj': 'colwise',
+              'model.layers.*.self_attn.v_proj': 'colwise'},
+ 'config': Qwen3Config {
+  "_attn_implementation_autoset": true,
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 5120,
+  "initializer_range": 0.02,
+  "intermediate_size": 17408,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 40,
+  "model_type": "qwen3",
+  "num_attention_heads": 40,
+  "num_hidden_layers": 40,
+  "num_key_value_heads": 8,
+  "pad_token_id": 151654,
+  "quantization_config": {
+    "bnb_4bit_compute_dtype": "bfloat16",
+    "bnb_4bit_quant_type": "nf4",
+    "bnb_4bit_use_double_quant": true,
+    "llm_int8_enable_fp32_cpu_offload": false,
+    "llm_int8_has_fp16_weight": false,
+    "llm_int8_skip_modules": null,
+    "llm_int8_threshold": 6.0,
+    "load_in_4bit": true,
+    "load_in_8bit": false,
+    "quant_method": "bitsandbytes"
+  },
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.51.3",
+  "unsloth_fixed": true,
+  "unsloth_version": "2025.5.2",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+,
+ 'fast_generate': <bound method GenerationMixin.generate of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'fast_generate_batches': None,
+ 'for_inference': functools.partial(<function FastLlamaModel.for_inference at 0x7fe2040396c0>, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)),
+ 'for_training': functools.partial(<function FastLlamaModel.for_training at 0x7fe204039760>, Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)),
+ 'generate': <bound method unsloth_fast_generate of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'generation_config': GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "max_length": 40960,
+  "pad_token_id": 151654,
+  "temperature": 0.6,
+  "top_k": 20,
+  "top_p": 0.95
+}
+,
+ 'hf_device_map': {'': 0},
+ 'hf_quantizer': <transformers.quantizers.quantizer_bnb_4bit.Bnb4BitHfQuantizer object at 0x7fe202269690>,
+ 'is_4bit_serializable': True,
+ 'is_loaded_in_4bit': True,
+ 'is_loaded_in_8bit': True,
+ 'is_quantized': True,
+ 'loss_type': 'ForCausalLM',
+ 'max_seq_length': 1024,
+ 'model_tags': ['unsloth'],
+ 'name_or_path': 'unsloth/qwen3-14b-unsloth-bnb-4bit',
+ 'original_push_to_hub': <bound method PushToHubMixin.push_to_hub of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'push_to_hub': <bound method unsloth_push_to_hub of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'push_to_hub_ggml': <bound method unsloth_convert_lora_to_ggml_and_push_to_hub of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'push_to_hub_gguf': <bound method unsloth_push_to_hub_gguf of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'push_to_hub_merged': <bound method unsloth_push_to_hub_merged of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'quantization_method': <QuantizationMethod.BITS_AND_BYTES: 'bitsandbytes'>,
+ 'save_pretrained_ggml': <bound method unsloth_convert_lora_to_ggml_and_save_locally of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'save_pretrained_gguf': <bound method unsloth_save_pretrained_gguf of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'save_pretrained_merged': <bound method unsloth_save_pretrained_merged of Qwen3ForCausalLM(
+  (model): Qwen3Model(
+    (embed_tokens): Embedding(151936, 5120, padding_idx=151654)
+    (layers): ModuleList(
+      (0-5): 6 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (6): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (7-18): 12 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (19): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (20-37): 18 x Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (38): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+      (39): Qwen3DecoderLayer(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (k_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=5120, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=5120, out_features=5120, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (rotary_emb): LlamaRotaryEmbedding()
+        )
+        (mlp): Qwen3MLP(
+          (gate_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (up_proj): Linear4bit(in_features=5120, out_features=17408, bias=False)
+          (down_proj): Linear4bit(in_features=17408, out_features=5120, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((5120,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((5120,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=5120, out_features=151936, bias=False)
+)>,
+ 'training': False,
+ 'vocab_size': 151936,
+ 'warnings_issued': {}}

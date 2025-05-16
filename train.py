@@ -1,28 +1,49 @@
 import argparse
 import time
+import textwrap
 
+from pprint import pprint
+
+import pandas as pd
 import torch
-from datasets import load_dataset
+
+from datasets import Dataset, load_dataset
+
+# fmt: off
+# Unsloth should be imported before trl
 from unsloth import (
     FastLanguageModel,
-    UnslothTrainer,
-    UnslothTrainingArguments,
-    is_bfloat16_supported,
+    # UnslothTrainer,
+    # UnslothTrainingArguments,
+    # is_bfloat16_supported,
 )
-from unsloth.chat_templates import get_chat_template
+# from unsloth.chat_templates import (
+#     get_chat_template,
+#     standardize_sharegpt,
+# )
+from trl import SFTConfig, SFTTrainer
+# fmt: on
+
+_MAX_SEQ_LEN = 1024
+_MAX_LORA_RANK = 256
 
 
 def _train(_args: argparse.Namespace):
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=f"unsloth/{_args.base_model}",
-        max_seq_length=2048,
+        model_name=_args.base_model,
+        max_seq_length=_MAX_SEQ_LEN,
         dtype=None,
         load_in_4bit=True,
+        full_finetuning=False,
     )
+    # print(f">>>>>> {tokenizer.chat_template}")
+
+    with open("pretrained_model.txt", "w") as modelf:
+        pprint(vars(model), modelf)
 
     model = FastLanguageModel.get_peft_model(
         model,
-        r=16,
+        r=_MAX_LORA_RANK,
         target_modules=[
             "q_proj",
             "k_proj",
@@ -32,7 +53,7 @@ def _train(_args: argparse.Namespace):
             "up_proj",
             "down_proj",
         ],
-        lora_alpha=16,
+        lora_alpha=_MAX_LORA_RANK,
         lora_dropout=0,
         bias="none",
         use_gradient_checkpointing="unsloth",
@@ -40,123 +61,143 @@ def _train(_args: argparse.Namespace):
         use_rslora=False,
         loftq_config=None,
     )
-    model.config.repetition_penalty = 1.1
+    model.config.repetition_penalty = 1.15
 
-    system_prompt = _get_system_prompt(_args.sys_prompt)
-    tokenizer = get_chat_template(
-        tokenizer,
-        chat_template="qwen2.5",
-        mapping={
-            "role": "role",
-            "content": "content",
-            "user": "user",
-            "assistant": "assistant",
-        },
-        map_eos_token=True,
-        system_message=system_prompt,
-    )
-    tokenizer.pad_token = tokenizer.eos_token
+    with open("peft_model.txt", "w") as modelf:
+        pprint(vars(model), modelf)
 
-    def formatting_prompts_func(inputs):
-        samples = inputs["text"]
-        print(f">>>>> len(samples): {len(samples)}")
-        texts = []
-        for text in samples:
-            text = text + tokenizer.eos_token
-            texts.append(text)
-        return {"text": texts}
+    # system_prompt = _get_system_prompt(_args.sys_prompt)
+    # tokenizer._system_message = system_prompt
+    # tokenizer = get_chat_template(
+    #     tokenizer,
+    #     chat_template="qwen2.5",
+    #     mapping={
+    #         "role": "role",
+    #         "content": "content",
+    #         "user": "user",
+    #         "assistant": "assistant",
+    #     },
+    #     map_eos_token=True,
+    #     system_message=system_prompt,
+    # )
+    # tokenizer.pad_token = tokenizer.eos_token
 
-    # `sample_by` line, paragraph, document
-    dataset = load_dataset(
-        "text",
-        data_files=["files/wenlv/txt/*.txt", "files/wenlv/txt/*.md"],
-        sample_by="document",
-        split="train",
-    )
-    # print(f">>>>>>>> {dataset.column_names}")
-    # dataset = dataset["train"].train_test_split(train_size=0.9)["train"]
-    dataset = dataset.map(formatting_prompts_func, batched=True)
+    # def formatting_prompts_func(inputs):
+    #     samples = inputs["text"]
+    #     print(f">>>>> len(samples): {len(samples)}")
+    #     texts = []
+    #     for text in samples:
+    #         texts.append(f"{text}{tokenizer.eos_token}")
+    #     return {"text": texts}
+
+    # # `sample_by` line, paragraph, document
+    # dataset = load_dataset(
+    #     "text",
+    #     data_files=["files/wenlv/md/*.md"],
+    #     sample_by="document",
+    #     split="train",
+    # )
+    # # print(f">>>>>>>> {dataset.column_names}")
+    # # dataset = dataset["train"].train_test_split(train_size=0.9)["train"]
+    # dataset = dataset.map(formatting_prompts_func, batched=True)
 
     # Continued Pretraining
-    trainer = UnslothTrainer(
+    # trainer = UnslothTrainer(
+    #     model=model,
+    #     tokenizer=tokenizer,
+    #     train_dataset=dataset,
+    #     dataset_text_field="text",
+    #     max_seq_length=_MAX_SEQ_LEN,
+    #     dataset_num_proc=1,
+    #     packing=False,  # Can make training 5x faster for short sequences.
+    #     args=UnslothTrainingArguments(
+    #         per_device_train_batch_size=2,
+    #         gradient_accumulation_steps=8,
+    #         warmup_steps=len(dataset) // 10,
+    #         # num_train_epochs=35,
+    #         max_steps=len(dataset),
+    #         learning_rate=4e-5,
+    #         embedding_learning_rate=4e-6,
+    #         fp16=not is_bfloat16_supported(),
+    #         bf16=is_bfloat16_supported(),
+    #         logging_steps=1,
+    #         optim="adamw_8bit",
+    #         weight_decay=0.01,
+    #         lr_scheduler_type="linear",
+    #         seed=3407,
+    #         output_dir="outputs",
+    #         report_to="none",  # Use this for WandB etc
+    #     ),
+    # )
+
+    def generate_conversation(sys_message):
+        def _generate_conversation(examples):
+            problems = examples["question"]
+            solutions = examples["answer"]
+            conversations = []
+            for problem, solution in zip(problems, solutions):
+                conversations.append(
+                    [
+                        {"role": "system", "content": sys_message},
+                        {"role": "user", "content": problem},
+                        {"role": "assistant", "content": solution},
+                    ]
+                )
+            return {"conversations": conversations}
+
+        return _generate_conversation
+
+    provider_sys_message = textwrap.dedent("""
+        - The following are instructions regarding issues of '华数'
+        - Write an appropriate response to fulfill the request explaining information about '华数'
+        - In the future, answer such questions according to the given answers here, IMPORTANT!!!
+        """)
+    provider_dataset = load_dataset("json", data_files="WASU_QA.jsonl", split="train")
+    provider_dataset = provider_dataset.map(
+        generate_conversation(provider_sys_message), batched=True
+    )
+    provider_series = pd.Series(
+        tokenizer.apply_chat_template(provider_dataset["conversations"], tokenize=False)
+    )
+
+    identity_sys_message = textwrap.dedent("""
+        - The following are instructions regarding your identity issues
+        - Write an appropriate response to fulfill the request explaining your identity information
+        """)
+    identity_dataset = load_dataset("json", data_files="identity.jsonl", split="train")
+    identity_dataset = identity_dataset.map(
+        generate_conversation(identity_sys_message), batched=True
+    )
+    identity_series = pd.Series(
+        tokenizer.apply_chat_template(identity_dataset["conversations"], tokenize=False)
+    )
+
+    combined_data = pd.concat([provider_series, identity_series])
+    combined_data.name = "text"
+
+    combined_dataset = Dataset.from_pandas(pd.DataFrame(combined_data))
+    combined_dataset = combined_dataset.shuffle(seed=3407)
+
+    # print(f">>>>> {combined_dataset[0]}")
+    # print(f">>>>> {identity_dataset.column_names}")
+
+    trainer = SFTTrainer(
         model=model,
         tokenizer=tokenizer,
-        train_dataset=dataset,
-        dataset_text_field="text",
-        max_seq_length=2048,
-        dataset_num_proc=2,
-        packing=False,  # Can make training 5x faster for short sequences.
-        args=UnslothTrainingArguments(
+        train_dataset=combined_dataset,
+        eval_dataset=None,
+        args=SFTConfig(
+            dataset_text_field="text",
             per_device_train_batch_size=2,
             gradient_accumulation_steps=8,
-            warmup_steps=10,
-            # num_train_epochs=1,  # Set this for 1 full training run.
-            max_steps=100,
-            learning_rate=5e-5,
-            embedding_learning_rate=1e-5,
-            fp16=not is_bfloat16_supported(),
-            bf16=is_bfloat16_supported(),
+            warmup_steps=len(combined_dataset) // 8,
+            max_steps=len(combined_dataset) * 2,
+            learning_rate=4e-6,
             logging_steps=1,
             optim="adamw_8bit",
             weight_decay=0.01,
             lr_scheduler_type="linear",
             seed=3407,
-            output_dir="outputs",
-            report_to="none",  # Use this for WandB etc
-        ),
-    )
-
-    start_memory, max_memory = _show_start_memory_stats()
-    trainer_stats = trainer.train()
-    _show_final_memory_stats(trainer_stats, start_memory, max_memory)
-
-    def formatting_instructions_func(conversations):
-        inputs = conversations["instruction"]
-        outputs = conversations["output"]
-        print(f">>>>> len(inputs): {len(inputs)}, len(outputs): {len(outputs)}")
-
-        texts = []
-        for _in, _out in zip(inputs, outputs):
-            text = """The following are instructions regarding your identity issues; write an appropriate response to fulfill the request explaining your identity information.
-
-                   ### Instruction:
-                   {}
-
-                   ### Response:
-                   {}
-                   """
-            text = text.format(_in, _out) + tokenizer.eos_token
-            texts.append(text)
-        return {"text": texts}
-
-    identity_dataset = load_dataset("json", data_files="identity.json", split="train")
-    identity_dataset = identity_dataset.map(formatting_instructions_func, batched=True)
-
-    # Instruction Finetuning
-    trainer = UnslothTrainer(
-        model=model,
-        tokenizer=tokenizer,
-        train_dataset=identity_dataset,
-        dataset_text_field="text",
-        max_seq_length=2048,
-        dataset_num_proc=2,
-        args=UnslothTrainingArguments(
-            per_device_train_batch_size=2,
-            gradient_accumulation_steps=8,
-            max_steps=60,
-            warmup_steps=8,
-            # warmup_ratio = 0.1,
-            # num_train_epochs = 1,
-            learning_rate=5e-5,
-            embedding_learning_rate=1e-5,
-            fp16=not is_bfloat16_supported(),
-            bf16=is_bfloat16_supported(),
-            logging_steps=1,
-            optim="adamw_8bit",
-            weight_decay=0.00,
-            lr_scheduler_type="linear",
-            seed=3407,
-            output_dir="outputs",
             report_to="none",
         ),
     )
@@ -165,7 +206,7 @@ def _train(_args: argparse.Namespace):
     trainer_stats = trainer.train()
     _show_final_memory_stats(trainer_stats, start_memory, max_memory)
 
-    # Local saving
+    # saving Lora
     if _args.save_lora:
         model.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-wenlv-LoRA")
         tokenizer.save_pretrained(f"{_args.saved_path}/{_args.saved_name}-wenlv-LoRA")
@@ -223,13 +264,13 @@ def _show_final_memory_stats(trainer_stats, start_gpu_memory, max_memory):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base-model", type=str, default="Qwen2.5-14B-Instruct")
+    parser.add_argument("--base-model", type=str, default="unsloth/Qwen3-14B")
     parser.add_argument("--sys-prompt", type=str, default="system_message.md")
-    parser.add_argument("--save-lora", action="store_true", default=True)
+    parser.add_argument("--save-lora", action="store_true", default=False)
     parser.add_argument("--save-vllm", action="store_true", default=True)
     parser.add_argument("--save-gguf", action="store_true", default=False)
     parser.add_argument("--saved-path", type=str, default="./models")
-    parser.add_argument("--saved-name", type=str, default="Qwen2.5-14B")
+    parser.add_argument("--saved-name", type=str, default="Qwen3-14B")
     _args = parser.parse_args()
 
     start_time = time.time()
