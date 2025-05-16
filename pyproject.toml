@@ -10,6 +10,7 @@ dependencies = [
     "trl",
     "llmcompressor",
     "numpy>=2.2.3",
+    "vllm",
     "docx2txt",
     "setuptools",
     "openai",
