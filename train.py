@@ -1,6 +1,6 @@
 import argparse
 import time
-import textwrap
+# import textwrap
 
 from pprint import pprint
 
@@ -130,44 +130,27 @@ def _train(_args: argparse.Namespace):
     #     ),
     # )
 
-    def generate_conversation(sys_message):
-        def _generate_conversation(examples):
-            problems = examples["question"]
-            solutions = examples["answer"]
-            conversations = []
-            for problem, solution in zip(problems, solutions):
-                conversations.append(
-                    [
-                        {"role": "system", "content": sys_message},
-                        {"role": "user", "content": problem},
-                        {"role": "assistant", "content": solution},
-                    ]
-                )
-            return {"conversations": conversations}
+    def generate_conversation(examples):
+        problems = examples["question"]
+        solutions = examples["answer"]
+        conversations = []
+        for problem, solution in zip(problems, solutions):
+            conversations.append(
+                [
+                    {"role": "user", "content": problem},
+                    {"role": "assistant", "content": solution},
+                ]
+            )
+        return {"conversations": conversations}
 
-        return _generate_conversation
-
-    provider_sys_message = textwrap.dedent("""
-        - The following are instructions regarding issues of '华数'
-        - Write an appropriate response to fulfill the request explaining information about '华数'
-        - In the future, answer such questions according to the given answers here, IMPORTANT!!!
-        """)
     provider_dataset = load_dataset("json", data_files="WASU_QA.jsonl", split="train")
-    provider_dataset = provider_dataset.map(
-        generate_conversation(provider_sys_message), batched=True
-    )
+    provider_dataset = provider_dataset.map(generate_conversation, batched=True)
     provider_series = pd.Series(
         tokenizer.apply_chat_template(provider_dataset["conversations"], tokenize=False)
     )
 
-    identity_sys_message = textwrap.dedent("""
-        - The following are instructions regarding your identity issues
-        - Write an appropriate response to fulfill the request explaining your identity information
-        """)
     identity_dataset = load_dataset("json", data_files="identity.jsonl", split="train")
-    identity_dataset = identity_dataset.map(
-        generate_conversation(identity_sys_message), batched=True
-    )
+    identity_dataset = identity_dataset.map(generate_conversation, batched=True)
     identity_series = pd.Series(
         tokenizer.apply_chat_template(identity_dataset["conversations"], tokenize=False)
     )
