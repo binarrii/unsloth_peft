@@ -9,6 +9,7 @@ dependencies = [
     "unsloth-zoo==2025.5.4",
     "trl",
     "llmcompressor",
+    "numpy>=2.2.3",
     "docx2txt",
     "setuptools",
     "openai",
