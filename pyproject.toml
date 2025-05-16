@@ -8,6 +8,7 @@ dependencies = [
     "unsloth[cu124-torch260]==2025.5.2",
     "unsloth-zoo==2025.5.4",
     "trl",
+    "llmcompressor",
     "docx2txt",
     "setuptools",
     "openai",
