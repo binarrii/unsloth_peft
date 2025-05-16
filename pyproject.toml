@@ -16,11 +16,6 @@ dependencies = [
     "httpx[socks]",
 ]
 
-[project.optional-dependencies]
-vllm = [
-    "vllm>=0.8.5"
-]
-
 [tool.uv.sources]
 # unsloth = { git = "https://github.com/unslothai/unsloth.git" }
 # unsloth-zoo = { git = "https://github.com/unslothai/unsloth-zoo.git" }
