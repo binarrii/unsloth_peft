@@ -33,7 +33,7 @@ def _train(_args: argparse.Namespace):
         model_name=_args.base_model,
         max_seq_length=_MAX_SEQ_LEN,
         dtype=None,
-        load_in_4bit=True,
+        load_in_4bit=False,
         full_finetuning=False,
     )
     # print(f">>>>>> {tokenizer.chat_template}")
