@@ -11,7 +11,7 @@ wheels/
 
 # Model files
 models/
-*Qwen2.5-*
+*Qwen*-*
 
 # Misc
 intermediate_*.txt*
@@ -20,6 +20,7 @@ images/
 *.out
 *.log
 llama.cpp/
+sparse_logs/
 outputs/
 grpo_trainer_lora_model/
 unsloth_compiled_cache/
