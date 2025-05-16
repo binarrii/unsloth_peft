@@ -8,13 +8,17 @@ dependencies = [
     "unsloth[cu124-torch260]==2025.5.2",
     "unsloth-zoo==2025.5.4",
     "trl",
-    "vllm>=0.8.5",
     "ray",
     "llmcompressor",
     "docx2txt",
     "setuptools",
     "openai",
     "httpx[socks]",
+]
+
+[project.optional-dependencies]
+vllm = [
+    "vllm>=0.8.5"
 ]
 
 [tool.uv.sources]
